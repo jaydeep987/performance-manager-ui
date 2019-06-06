@@ -35,7 +35,10 @@
       "~common/*": ["src/common/*"],
       "~pages/*": ["src/pages/*"],
       "~types/*": ["src/types/*"],
-      "~img/*": ["src/img/*"]
+      "~img/*": ["src/img/*"],
+      "~utils/*": ["src/utils/*"],
+      "~model/*": ["src/model/*"],
+      "~services/*": ["src/services/*"]
     },
     "esModuleInterop": true,             /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
 

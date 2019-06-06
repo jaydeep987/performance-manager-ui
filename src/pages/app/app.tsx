@@ -4,8 +4,9 @@ import { create } from 'jss';
 import { Provider } from 'mobx-react';
 import * as React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { HashRouter, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { Home } from '~pages/home/home';
+import { Login } from '~pages/login/login';
 import { stores } from '~stores/index';
 
 import { muiTheme } from './mui-theme';
@@ -32,7 +33,8 @@ export const App: React.FunctionComponent = (): JSX.Element => (
       <JssProvider jss={jss} generateClassName={generateClassName}>
         <HashRouter>
           <Switch>
-            <Home />
+            <Route exact={true} path="/login" component={Login} />
+            <Route path="/" component={Home} />
           </Switch>
         </HashRouter>
       </JssProvider>

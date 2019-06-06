@@ -38,6 +38,9 @@ module.exports = (env) => {
           '~pages': path.resolve(settings.srcDir, 'pages'),
           '~types': path.resolve(settings.srcDir, 'types'),
           '~img': path.resolve(settings.srcDir, 'img'),
+          '~utils': path.resolve(settings.srcDir, 'utils'),
+          '~model': path.resolve(settings.srcDir, 'model'),
+          '~services': path.resolve(settings.srcDir, 'services'),
         }
       },
       /** Optimization settings */
@@ -67,6 +70,10 @@ module.exports = (env) => {
             }
           }
         },
+      },
+      node: {
+        fs: 'empty',
+        child_process: 'empty',
       },
     },
     rules: [

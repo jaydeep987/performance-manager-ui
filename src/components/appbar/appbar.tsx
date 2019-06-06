@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Button,
   IconButton,
   MenuItem,
   Paper,
@@ -9,14 +10,16 @@ import {
   withStyles,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import { mdiEarth } from '@mdi/js';
+import { mdiEarth, mdiLogout } from '@mdi/js';
 import Icon from '@mdi/react';
 import classNames from 'classnames';
 import i18next from 'i18next';
 import { reaction } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
+import { RouterProps } from 'react-router';
 import { IconSize, LanguageKeys, Languages } from '~common/constants';
+import { userService } from '~services/user-service';
 import { SettingStore } from '~stores/settings';
 import { StyledComponentProps } from '~types/styled';
 
@@ -54,6 +57,11 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
     settingStore.openDrawer();
   };
 
+  const handleLogoutClick = () => {
+    userService.removeUserInfo();
+    props.history.replace('/login');
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -79,6 +87,11 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
           <span className={classes.headTitle}>{translate('appTitle')}</span>
         </Typography>
         <Paper className={classes.toolbarRight}>
+          <Button variant="contained" color="primary" onClick={handleLogoutClick}>
+            <Typography className={classes.setLanguageLabel} variant="subtitle1">
+              <Icon path={mdiLogout} size={IconSize.SM} color="#fff" />
+            </Typography>
+          </Button>
           <Typography className={classes.setLanguageLabel} variant="subtitle1">
             <Icon path={mdiEarth} size={IconSize.MD} spin={true} color="#fff" />
           </Typography>
@@ -100,7 +113,7 @@ interface InjectedProps {
   settingStore: SettingStore;
 }
 
-interface AppbarProps extends StyledComponentProps<Classes>, Partial<InjectedProps> {
+interface AppbarProps extends StyledComponentProps<Classes>, Partial<InjectedProps>, RouterProps {
   /** translation function */
   t: i18next.TFunction;
   /** i18n instance */

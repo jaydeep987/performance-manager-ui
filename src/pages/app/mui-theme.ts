@@ -2,21 +2,31 @@ import { createMuiTheme } from '@material-ui/core';
 
 export const muiTheme = createMuiTheme({
   palette: {
+    common: { black: '#000', white: '#fff' },
+    background: { paper: '#fff', default: '#fafafa' },
     primary: {
-      light: '#ff7043',
-      main: '#ff5722',
-      dark: '#e64a19',
-      contrastText: '#bf360c',
+      light: 'rgba(124, 77, 255, 1)',
+      main: 'rgba(101, 31, 255, 1)',
+      dark: 'rgba(98, 0, 234, 1)',
+      contrastText: '#fff',
     },
     secondary: {
-      light: '#26a69a',
-      main: '#009688',
-      dark: '#00695c',
-      contrastText: '#004d40',
+      light: 'rgba(41, 121, 255, 1)',
+      main: 'rgba(41, 98, 255, 1)',
+      dark: 'rgba(13, 71, 161, 1)',
+      contrastText: '#fff',
+    },
+    error: {
+      light: '#e57373',
+      main: '#f44336',
+      dark: '#d32f2f',
+      contrastText: '#fff',
     },
     text: {
-      primary: '#000',
-      secondary: '#fff',
+      primary: 'rgba(0, 0, 0, 0.87)',
+      secondary: 'rgba(0, 0, 0, 0.54)',
+      disabled: 'rgba(0, 0, 0, 0.38)',
+      hint: 'rgba(0, 0, 0, 0.38)',
     },
   },
   typography: {

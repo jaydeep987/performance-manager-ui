@@ -12,18 +12,19 @@ import {
 import { ListItemProps } from '@material-ui/core/ListItem';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import HomeIcon from '@material-ui/icons/Home';
-import { mdiCounter } from '@mdi/js';
-import Icon from '@mdi/react';
 import classNames from 'classnames';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
 import { Link, LinkProps } from 'react-router-dom';
-import { IconSize } from '~common/constants';
+import { Roles } from '~model/user';
+import { RoutePropsExtended } from '~pages/routes/routes';
+import { userService } from '~services/user-service';
 import { SettingStore } from '~stores/settings';
 import { StyledComponentProps } from '~types/styled';
 
+import { getAdminMenuLinks } from './get-admin-menu-links';
+import { getNormalMenuLinks } from './get-normal-menu-links';
 import { Classes, styles } from './styles';
 
 /**
@@ -39,16 +40,13 @@ class AppDrawer extends React.Component<AppDrawerProps> {
 
   /** Drawer links */
   getLinks(): Links[] {
-    const { classes, t: translate } = this.props;
+    const currentUser = userService.getUserInfo();
 
-    return [
-      { path: '/', icon: <HomeIcon className={classes.drawerLinkIcon} />, text: translate('pageHeadTitle.home') },
-      {
-        path: '/counter',
-        icon: <Icon className={classes.drawerLinkIcon} path={mdiCounter} size={IconSize.MD} />,
-        text: translate('pageHeadTitle.counter'),
-      },
-    ];
+    if (!currentUser) {
+      return [];
+    }
+
+    return currentUser.role === Roles.ADMIN ? getAdminMenuLinks(this.props) : getNormalMenuLinks(this.props);
   }
 
   /** Renders side drawer list items with icons and text */
@@ -129,9 +127,9 @@ class AppDrawer extends React.Component<AppDrawerProps> {
   }
 }
 
-interface Links {
+export interface Links {
   /** Route path */
-  path: string;
+  path: RoutePropsExtended['path'];
   /** Icon component */
   icon: JSX.Element;
   /** Link text */
@@ -145,7 +143,7 @@ interface StoreProps {
 
 type InjectedProps = StoreProps;
 
-type AppDrawerProps = WithTranslation & Partial<StoreProps> & StyledComponentProps<Classes>;
+export type AppDrawerProps = WithTranslation & Partial<StoreProps> & StyledComponentProps<Classes>;
 
 const StyledAppDrawer = withStyles(styles)(AppDrawer);
 

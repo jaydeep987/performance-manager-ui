@@ -28,7 +28,9 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "@mdi/js": "^3.5.95",
     "@mdi/react": "^1.1.0",
+    "axios": "^0.19.0",
     "classnames": "^2.2.6",
+    "formik": "^1.5.7",
     "i18next": "^15.0.4",
     "jss": "^9.8.7",
     "loglevel": "^1.6.1",
@@ -38,7 +40,8 @@
     "react-dom": "^16.8.3",
     "react-i18next": "^10.2.0",
     "react-jss": "^8.6.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "universal-cookie": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
@@ -56,6 +59,7 @@
     "@types/loglevel": "^1.5.4",
     "@types/react-dom": "^16.8.2",
     "@types/react-jss": "^8.6.3",
+    "@types/react-router": "^5.0.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/webpack-env": "^1.13.7",
     "@typescript-eslint/eslint-plugin-tslint": "^1.4.2",
@@ -67,7 +71,7 @@
     "brotli-webpack-plugin": "^1.1.0",
     "clean-webpack-plugin": "^1.0.1",
     "compression-webpack-plugin": "^2.0.0",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.10.0",
     "enzyme-to-json": "^3.3.5",
