@@ -18,7 +18,7 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
   },
   mainContent: {
     flexGrow: 1,
-    paddingTop: theme.spacing.unit + MAIN_CONTENT_PADDING,
+    paddingTop: theme.spacing(MAIN_CONTENT_PADDING),
     maxHeight: '100%',
     overflow: 'hidden',
   },

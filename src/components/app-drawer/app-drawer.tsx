@@ -7,16 +7,15 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  withStyles,
 } from '@material-ui/core';
-import { ListItemProps } from '@material-ui/core/ListItem';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { withStyles } from '@material-ui/styles';
 import classNames from 'classnames';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { WithTranslation } from 'react-i18next';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Roles } from '~model/user';
 import { RoutePropsExtended } from '~pages/routes/routes';
 import { userService } from '~services/user-service';
@@ -46,7 +45,7 @@ class AppDrawer extends React.Component<AppDrawerProps> {
       return [];
     }
 
-    return currentUser.role === Roles.ADMIN ? getAdminMenuLinks(this.props) : getNormalMenuLinks(this.props);
+    return currentUser.role === Roles.Admin ? getAdminMenuLinks(this.props) : getNormalMenuLinks(this.props);
   }
 
   /** Renders side drawer list items with icons and text */
@@ -54,9 +53,11 @@ class AppDrawer extends React.Component<AppDrawerProps> {
     this
       .getLinks()
       .map((link: Links) => (
+        // tslint:disable-next-line:ban-ts-ignore
+        // @ts-ignore there is some issue in types, actually component exists
         <ListItem
           button={true}
-          component={(props: ListItemProps & Partial<LinkProps>) => <Link to={link.path} {...props} />}
+          component={React.forwardRef((props, ref: React.Ref<Link>) => <Link to={link.path} {...props} ref={ref} />)}
           key={link.path}
           onClick={hideOnClick ? this.handleDrawerClose : undefined}
         >
@@ -82,7 +83,7 @@ class AppDrawer extends React.Component<AppDrawerProps> {
     const { classes, theme } = this.props;
 
     return (
-      <section>
+      <nav>
         <Hidden smUp={true} implementation="css">
           <Drawer
             className={classes.mobileDrawer}
@@ -117,12 +118,14 @@ class AppDrawer extends React.Component<AppDrawerProps> {
               </IconButton>
             </div>
             <Divider />
-            <List>
-              {this.rednerDrawerListItems()}
-            </List>
+            <div>
+              <List>
+                {this.rednerDrawerListItems()}
+              </List>
+            </div>
           </Drawer>
         </Hidden>
-      </section>
+      </nav>
     );
   }
 }

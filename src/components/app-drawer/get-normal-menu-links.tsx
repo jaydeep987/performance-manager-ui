@@ -13,7 +13,7 @@ export function getNormalMenuLinks(props: AppDrawerProps): Links[] {
   return [
     {
       path: '/feedback',
-      icon: <FeedbackIcon className={classes.drawerLinkIcon}/>,
+      icon: <FeedbackIcon className={classes.drawerLinkIcon} />,
       text: translate('menus.normal.feedback'),
     },
     {

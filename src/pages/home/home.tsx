@@ -1,4 +1,5 @@
-import { CircularProgress, CssBaseline, withStyles } from '@material-ui/core';
+import { CircularProgress, CssBaseline } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
@@ -18,10 +19,12 @@ import { Classes, styles } from './styles';
 @inject('settingStore')
 @observer
 class Home extends React.Component<HomeProps> {
-
-  /** Gives injected props */
-  get injectedProps(): InjectedProps {
-    return this.props as InjectedProps;
+  /** On component mount check user is logged in or not */
+  componentDidMount(): void {
+    if (!userService.isLoggedIn()) {
+      this.injectedProps.history.replace('/login');
+    }
+    this.redirectToDefaultRoute();
   }
 
   /**
@@ -32,12 +35,9 @@ class Home extends React.Component<HomeProps> {
     this.redirectToDefaultRoute();
   }
 
-  /** On component mount check user is logged in or not */
-  componentDidMount(): void {
-    if (!userService.isLoggedIn()) {
-      this.injectedProps.history.replace('/login');
-    }
-    this.redirectToDefaultRoute();
+  /** Gives injected props */
+  get injectedProps(): InjectedProps {
+    return this.props as InjectedProps;
   }
 
   /**

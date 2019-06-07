@@ -23,6 +23,9 @@ async function loadModule(loadingFactory: () => Promise<any>, moduleName: string
 
 const Dashboard = React.lazy(() => loadModule(() => import('~pages/dashboard/dashboard'), 'Dashboard'));
 const Counter = React.lazy(() => loadModule(() => import('~pages/counter/counter'), 'Counter'));
+const EmployeeManagement = React.lazy(
+  () => loadModule(() => import('~pages/employee-management/employee-management'), 'EmployeeManagement'),
+);
 
 const routes: RoutePropsExtended[] = [
   {
@@ -33,13 +36,13 @@ const routes: RoutePropsExtended[] = [
   },
   {
     path: '/employee',
-    render: (props) => <Dashboard {...props} />,
+    render: (props) => <EmployeeManagement {...props} />,
     isPrivate: true,
     roles: ['admin'],
   },
   {
     path: '/feedback',
-    render: (props) => <Counter {...props} />,
+    render: (props) => <Dashboard {...props} />,
     isPrivate: true,
     roles: ['normal'],
   },

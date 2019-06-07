@@ -7,10 +7,10 @@ import { StyledComponentProps } from '~types/styled';
 
 import { Classes, styles } from './styles';
 
-const ErrorMessage: React.FunctionComponent<ErrorMessageProps> =
-(props: ErrorMessageProps): React.ReactElement | null => {
+const ErrorMessage:
+React.FunctionComponent<ErrorMessageProps> = (props: ErrorMessageProps): React.ReactElement | null => {
   const { message, onClose, classes } = props;
-  const [ open, setOpen ] = React.useState(true);
+  const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
     setOpen(false);

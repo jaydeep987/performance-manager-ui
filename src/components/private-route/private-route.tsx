@@ -8,7 +8,12 @@ import { userService } from '~services/user-service';
  * Defined this component in src/components, because it can be reused by some components anytime!
  */
 export const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props: PrivateRouteProps): JSX.Element => {
-  const { component: Component, render, roles, ...rest } = props;
+  const {
+    component: Component,
+    render,
+    roles,
+    ...rest
+  } = props;
 
   // tslint:disable-next-line:ban-ts-ignore
   // @ts-ignore need to use any type for compProps bcoz we dont know type of props, it's generic component

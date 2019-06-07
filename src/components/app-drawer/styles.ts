@@ -38,14 +38,14 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
     }),
   },
   drawerClose: {
-    width: theme.spacing.unit * SPACING_UNIT_NONSM + 1,
+    width: theme.spacing(SPACING_UNIT_NONSM) + 1,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * SPACING_UNIT_SM + 1,
+      width: theme.spacing(SPACING_UNIT_SM) + 1,
     },
   },
   mobileDrawer: {

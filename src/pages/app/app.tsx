@@ -1,9 +1,13 @@
-import { MuiThemeProvider } from '@material-ui/core';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import {
+  StylesProvider,
+  ThemeProvider,
+  createGenerateClassName,
+  jssPreset,
+} from '@material-ui/styles';
 import { create } from 'jss';
 import { Provider } from 'mobx-react';
 import * as React from 'react';
-import JssProvider from 'react-jss/lib/JssProvider';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { Home } from '~pages/home/home';
 import { Login } from '~pages/login/login';
@@ -29,15 +33,16 @@ const jss = create({
  */
 export const App: React.FunctionComponent = (): JSX.Element => (
   <Provider {...stores}>
-    <MuiThemeProvider theme={muiTheme}>
-      <JssProvider jss={jss} generateClassName={generateClassName}>
+    <ThemeProvider theme={muiTheme}>
+      <CssBaseline />
+      <StylesProvider jss={jss} generateClassName={generateClassName}>
         <HashRouter>
           <Switch>
-            <Route exact={true} path="/login" component={Login} />
-            <Route path="/" component={Home} />
+            <Route exact={true} path="/login" render={(props) => <Login {...props} />} />
+            <Route path="/" render={(props) => <Home {...props} />} />
           </Switch>
         </HashRouter>
-      </JssProvider>
-    </MuiThemeProvider>
+      </StylesProvider>
+    </ThemeProvider>
   </Provider>
 );

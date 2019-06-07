@@ -8,7 +8,8 @@ export function sendRequest<R>(apiOptions: AxiosRequestConfig): Promise<R> {
   return Axios({
     baseURL: config.API_BASE_URL,
     timeout: config.API_TIMEOUT,
+    withCredentials: true,
     ...apiOptions,
   })
-  .then((response: AxiosResponse<R>) => response.data);
+    .then((response: AxiosResponse<R>) => response.data);
 }

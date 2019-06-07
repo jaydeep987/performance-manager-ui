@@ -8,7 +8,7 @@ export const PAGE_HEADER_HEIGHT = 50;
 
 export const styles: StyleRulesCallback<Classes> = (): Record<Classes, CSSProperties> => ({
   container: {
-    backgroundColor: '#dd2c00',
+    backgroundColor: '#1976d2',
     color: '#fff',
     padding: 11,
     width: '100%',

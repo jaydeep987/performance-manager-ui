@@ -1,5 +1,7 @@
 
 export interface User {
+  /** Unique ID of record */
+  _id: string;
   /** Username */
   userName: string;
   /** First name */
@@ -17,6 +19,12 @@ export interface User {
 }
 
 export const Roles = {
-  ADMIN: 'admin',
-  NORMAL_USER: 'normal',
+  Admin: 'admin',
+  Normal: 'normal',
+};
+
+export const Sex = {
+  Male: 'M',
+  Female: 'F',
+  Others: 'O',
 };

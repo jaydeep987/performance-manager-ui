@@ -90,7 +90,7 @@ describe('Test Component: AppDrawer', () => {
       permanentDrawer = component.prop('variant') === 'permanent' ? component : undefined;
     });
 
-    (permanentDrawer as ReactWrapper).find(ListItem).forEach((listItem: ReactWrapper) => {
+    (permanentDrawer as ReactWrapper).find(ListItem).forEach((listItem) => {
       expect(listItem.find(ListItemIcon).length).toBe(1);
       expect(listItem.find(ListItemText).length).toBe(1);
     });

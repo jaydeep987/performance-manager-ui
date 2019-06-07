@@ -59,7 +59,7 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
   },
   hide: {
     display: 'none',

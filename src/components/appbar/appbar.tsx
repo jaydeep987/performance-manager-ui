@@ -7,9 +7,9 @@ import {
   Select,
   Toolbar,
   Typography,
-  withStyles,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { withStyles } from '@material-ui/styles';
 import { mdiEarth, mdiLogout } from '@mdi/js';
 import Icon from '@mdi/react';
 import classNames from 'classnames';
@@ -31,7 +31,7 @@ import { Classes, styles } from './styles';
  */
 const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.Element => {
   const { classes, i18n, t: translate } = props;
-  const { settingStore } = props as InjectedProps;
+  const { settingStore, history } = props as InjectedProps;
 
   reaction(
     () => settingStore.locale,
@@ -49,8 +49,8 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
       ))
   );
 
-  const handleLocaleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    settingStore.setLocale(event.target.value);
+  const handleLocaleChange = (event: React.ChangeEvent<MaterialChange>) => {
+    settingStore.setLocale(event.target.value as string);
   };
 
   const handleDrawerOpen = () => {
@@ -58,8 +58,12 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
   };
 
   const handleLogoutClick = () => {
-    userService.removeUserInfo();
-    props.history.replace('/login');
+    userService
+      .logout()
+      .finally(() => {
+        history.replace('/login');
+      })
+      .catch();
   };
 
   return (
@@ -108,12 +112,19 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
   );
 });
 
-interface InjectedProps {
+interface MaterialChange {
+  /** Component name */
+  name?: string;
+  /** Component value */
+  value: unknown;
+}
+
+interface InjectedProps extends RouterProps {
   /** Instance of Settings store */
   settingStore: SettingStore;
 }
 
-interface AppbarProps extends StyledComponentProps<Classes>, Partial<InjectedProps>, RouterProps {
+interface AppbarProps extends StyledComponentProps<Classes>, Partial<InjectedProps> {
   /** translation function */
   t: i18next.TFunction;
   /** i18n instance */

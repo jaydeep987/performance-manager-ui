@@ -8,7 +8,12 @@ import { sendRequest } from '~utils/request';
 export const userService = {
   authenticate,
   getUserInfo,
+  loadUsers,
+  addNewUser,
+  updateUser,
+  deleteUser,
   removeUserInfo,
+  logout,
   isLoggedIn,
   isAdmin,
 };
@@ -25,6 +30,67 @@ async function authenticate(reqParams: AuthenticateReqParams): Promise<void> {
     // set user info in cookie
     cookies.set('userInfo', user);
   }
+}
+
+/** This will load users from api */
+async function loadUsers(): Promise<User[]> {
+  const users = await sendRequest<User[]>({
+    url: '/users/',
+  });
+
+  return users;
+}
+
+/**
+ * This will add new user by calling api and passing data to it
+ */
+async function addNewUser(user: User): Promise<User> {
+  const addedUser = await sendRequest<User>({
+    url: '/users/register',
+    data: user,
+    method: 'post',
+  });
+
+  return addedUser;
+}
+
+/**
+ * Updates user information
+ */
+async function updateUser(data: User): Promise<User> {
+  const updatedUser = await sendRequest<User>({
+    url: '/users/',
+    data,
+    method: 'PUT',
+  });
+
+  return updatedUser;
+}
+
+/**
+ * Delete user information
+ */
+async function deleteUser(data: User): Promise<User> {
+  const updatedUser = await sendRequest<User>({
+    url: '/users/',
+    data,
+    method: 'delete',
+  });
+
+  return updatedUser;
+}
+
+/**
+ * Logs out user.
+ * Call API to invalidate token and remove info from cookie
+ */
+async function logout(): Promise<void> {
+  removeUserInfo();
+
+  await sendRequest({
+    url: '/users/logout',
+    method: 'post',
+  });
 }
 
 /**
@@ -54,7 +120,7 @@ function isLoggedIn(): boolean {
 function isAdmin(): boolean {
   const currentUser = getUserInfo();
 
-  return currentUser && currentUser.role === Roles.ADMIN;
+  return currentUser && currentUser.role === Roles.Admin;
 }
 
 export interface AuthenticateReqParams {

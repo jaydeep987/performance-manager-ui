@@ -34,12 +34,15 @@ module.exports = {
       ignoreTrailingComments: true,
       ignoreUrls: true,
     }],
+    'react/no-multi-comp': 'off',
     'no-unused-vars': 'off',
     'import/prefer-default-export': false,
     'no-param-reassign': 'off',
     'no-use-before-define': ['error', {
       functions: false,
     }],
+    'react/sort-comp': 'off',
+    'no-underscore-dangle': 'off',
     'react/jsx-boolean-value': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': [ // allows for-in

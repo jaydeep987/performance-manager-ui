@@ -45,6 +45,7 @@
     "no-inferred-empty-object-type": false,
     "no-trailing-whitespace": [true, "ignore-jsdoc"],
     "no-unsafe-any": false,
+    "align": [true, "elements", "members", "parameters", "statements"],
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": [true, "ignore-for-loop"],
     "only-arrow-functions": [true, "allow-named-functions"],

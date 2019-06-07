@@ -20,6 +20,6 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
   },
   iconVariant: {
     opacity: 0.9,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing(2),
   },
 });

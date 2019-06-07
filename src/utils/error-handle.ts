@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import i18next from 'i18next';
 import { ResponseStatus } from '~common/constants';
+/* eslint-disable prefer-destructuring */
 
 /**
  * Common function to extract error message from api error response.
@@ -8,17 +9,30 @@ import { ResponseStatus } from '~common/constants';
  * Default message will be system error message.
  */
 export function getApiErrorMessage(params: GetApiErrorMessageParams): string {
-  const { error, translate, code, codeMessage } = params;
+  const {
+    error,
+    translate,
+    code,
+    codeMessage,
+  } = params;
   let message: string;
 
   if (typeof error === 'string') {
     message = translate('errorMessage.systemError');
   } else if (code && error.response && error.response.status === code) {
     message = codeMessage as string;
+  } else if (error.response && error.response.data && error.response.data.errorDetails) {
+    message = error.response.data.errorDetails.message;
+  } else if (error.response && error.response.status === ResponseStatus.AUTH_FAILED) {
+    message = translate('errorMessage.unauthorizedAccess');
+  } else if (error.response && error.response.status === ResponseStatus.INTERNAL_ERROR) {
+    message = translate('errorMessage.internalError');
+  } else if (error.response && error.response.status === ResponseStatus.BAD_REQUEST) {
+    message = translate('errorMessage.badRequest');
+  } else if (error.response && error.response.status === ResponseStatus.NOT_FOUND) {
+    message = translate('errorMessage.notFound');
   } else {
-    message = error.response && error.response.data ?
-      error.response.data.errorDetails.message :
-      translate('errorMessage.systemError');
+    message = translate('errorMessage.systemError');
   }
 
   return message;

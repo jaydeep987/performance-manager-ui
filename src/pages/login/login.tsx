@@ -17,13 +17,14 @@ import { Classes, styles } from './styles';
  * By which user will be authenticated and further access will be granted.
  */
 class Login extends React.Component<LoginProps> {
-
   /**
    * Check whether user information is already in cookie, if yes, redirect to home
    */
   componentDidMount(): void {
+    const { history } = this.props;
+
     if (userService.getUserInfo()) {
-      this.props.history.push('/');
+      history.push('/');
     }
   }
 
@@ -50,30 +51,29 @@ class Login extends React.Component<LoginProps> {
    * On submit call login api to authenticate
    */
   onSubmit = (values: FormValues, action: FormikActions<FormValues>) => {
-    const { t } = this.props;
+    const { t, history } = this.props;
 
     // Call api to authenticate
-    userService.authenticate({
-      userName: values.username,
-      password: values.password,
-    })
-    .then(() => {
-      if (location) {
-        this.props.history.push('/');
-      }
-      action.setSubmitting(false);
-    })
-    .catch((error) => {
-      const message = getApiErrorMessage({
-        error,
-        translate: t,
-        code: ResponseStatus.AUTH_FAILED,
-        codeMessage: t('errorMessage.wrongLoginCredentials'),
-      });
+    userService
+      .authenticate({
+        userName: values.username,
+        password: values.password,
+      })
+      .then(() => {
+        history.push('/');
+        action.setSubmitting(false);
+      })
+      .catch((error) => {
+        const message = getApiErrorMessage({
+          error,
+          translate: t,
+          code: ResponseStatus.AUTH_FAILED,
+          codeMessage: t('errorMessage.wrongLoginCredentials'),
+        });
 
-      action.setSubmitting(false);
-      action.setError(message);
-    });
+        action.setSubmitting(false);
+        action.setError(message);
+      });
   }
 }
 

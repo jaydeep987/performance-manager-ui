@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -28,8 +28,5 @@ export const muiTheme = createMuiTheme({
       disabled: 'rgba(0, 0, 0, 0.38)',
       hint: 'rgba(0, 0, 0, 0.38)',
     },
-  },
-  typography: {
-    useNextVariants: true,
   },
 });

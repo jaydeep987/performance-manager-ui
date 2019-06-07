@@ -8,7 +8,13 @@ import { StyledComponentProps } from '~types/styled';
 import { Classes } from './styles';
 
 const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProps): JSX.Element => {
-  const { classes, t, handleSubmit, handleChange, error } = props;
+  const {
+    classes,
+    t,
+    handleSubmit,
+    handleChange,
+    error,
+  } = props;
 
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
@@ -25,6 +31,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProp
 
       <TextField
         className={classes.textbox}
+        type="password"
         name="password"
         label="Password"
         placeholder="Your Password"

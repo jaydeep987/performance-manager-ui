@@ -41,6 +41,7 @@ module.exports = (env) => {
           '~utils': path.resolve(settings.srcDir, 'utils'),
           '~model': path.resolve(settings.srcDir, 'model'),
           '~services': path.resolve(settings.srcDir, 'services'),
+          "@material-ui/styles": path.resolve(settings.root, "node_modules", "@material-ui/styles"),
         }
       },
       /** Optimization settings */
