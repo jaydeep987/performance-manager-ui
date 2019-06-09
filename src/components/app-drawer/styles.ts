@@ -24,6 +24,10 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    minHeight: Number(theme.mixins.toolbar.minHeight) - 23,
+    [theme.breakpoints.up('sm')]: {
+      minHeight: Number(theme.mixins.toolbar.minHeight) - 15,
+    },
   },
   drawer: {
     width: DRAWER_WIDTH,

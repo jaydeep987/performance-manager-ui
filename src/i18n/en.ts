@@ -6,6 +6,7 @@ export const en = {
       home: 'Home',
       counter: 'Counter',
       employeeManagement: 'Employee Management',
+      adminReview: 'Review Management and Assignment',
       routeError: 'Error loading page',
     },
     menus: {
@@ -32,6 +33,35 @@ export const en = {
         role: 'Role',
         password: 'Password',
       },
+    },
+    adminReview: {
+      button: {
+        selectEmployee: 'Select Employee',
+        viewAssignees: 'View Assignees',
+      },
+    },
+    selectEmployeePopup: {
+      popupTitle: 'Select Employee',
+      button: {
+        cancel: 'Cancel',
+      },
+    },
+    reviews: {
+      noReviewMessage: 'There are no reviews yet. Try adding new!',
+      reviewsOfLabel: 'Showing Reviews of: {{whom}}',
+      formDialogTitle: 'Review',
+      buttons: {
+        addReview: 'Add New Review',
+      },
+      form: {
+        writeReviewPlaceholder: 'Write a review',
+        submitButton: 'Submit',
+        cancelButton: 'Cancel',
+      },
+    },
+    assigneePopup: {
+      title: 'Assignees',
+      noAssignee: 'There are no assingees yet. Try to add some!',
     },
     dashboard: {
       text: 'This is dashboard',

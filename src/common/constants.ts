@@ -1,6 +1,7 @@
 /** Various sizes for svg icon */
 export const IconSize = {
   SM: 1,
+  SM1: 1.2,
   MD: 1.5,
   MD1: 1.8,
   MD2: 2,

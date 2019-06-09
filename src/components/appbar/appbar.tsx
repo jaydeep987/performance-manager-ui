@@ -88,15 +88,13 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
           <MenuIcon />
         </IconButton>
         <Typography className={classes.toolbarLeft} variant="h4" color="inherit">
-          <span className={classes.headTitle}>{translate('appTitle')}</span>
+          {translate('appTitle')}
         </Typography>
         <Paper className={classes.toolbarRight}>
-          <Button variant="contained" color="primary" onClick={handleLogoutClick}>
-            <Typography className={classes.setLanguageLabel} variant="subtitle1">
-              <Icon path={mdiLogout} size={IconSize.SM} color="#fff" />
-            </Typography>
+          <Button variant="contained" size="small" color="primary" onClick={handleLogoutClick}>
+            <Icon path={mdiLogout} size={IconSize.SM1} color="#fff" />
           </Button>
-          <Typography className={classes.setLanguageLabel} variant="subtitle1">
+          <Typography className={classes.setLanguageLabel} variant="body2">
             <Icon path={mdiEarth} size={IconSize.MD} spin={true} color="#fff" />
           </Typography>
           <Select

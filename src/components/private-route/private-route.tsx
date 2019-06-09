@@ -15,6 +15,7 @@ export const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props: 
     ...rest
   } = props;
 
+  // tslint:disable:no-null-undefined-union
   // tslint:disable-next-line:ban-ts-ignore
   // @ts-ignore need to use any type for compProps bcoz we dont know type of props, it's generic component
   const renderComponent = (compProps) => {

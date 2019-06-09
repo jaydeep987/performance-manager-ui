@@ -12,6 +12,8 @@ module.exports = {
     contentBase: baseConfig.settings.outPath,
     /** enable hot reload */
     hot: true,
+    host: process.env.HOST || '0.0.0.0',
+    port: process.env.PORT || 8080,
   },
   module: {
     rules: baseConfig.rules,

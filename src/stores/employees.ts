@@ -6,7 +6,7 @@ import { ValidationResult } from '~types/validator';
 import { getApiErrorMessage } from '~utils/error-handle';
 
 /**
- * Counter store
+ * Employee store
  */
 export class EmployeeStore {
   /** Observalbe prop to hold employee data */
@@ -79,7 +79,12 @@ export class EmployeeStore {
     return userService
       .updateUser({ ...newData, _id: oldData._id })
       .then((updatedUser: User) => {
-        this.employees = [...this.employees.filter((user: User) => user._id !== oldData._id), ...[updatedUser]];
+        const foundIndex = this.employees.findIndex((user) => user._id === oldData._id);
+        this.employees = [
+          ...this.employees.slice(0, foundIndex),
+          ...[updatedUser],
+          ...this.employees.slice(foundIndex + 1),
+        ];
       })
       .catch((error) => {
         this.error = getApiErrorMessage({ error, translate: this.translate as i18next.TFunction });

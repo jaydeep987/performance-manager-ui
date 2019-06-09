@@ -26,11 +26,14 @@ const Counter = React.lazy(() => loadModule(() => import('~pages/counter/counter
 const EmployeeManagement = React.lazy(
   () => loadModule(() => import('~pages/employee-management/employee-management'), 'EmployeeManagement'),
 );
+const AdminReview = React.lazy(
+  () => loadModule(() => import('~pages/admin-review/admin-review'), 'AdminReview'),
+);
 
 const routes: RoutePropsExtended[] = [
   {
     path: '/review',
-    render: (props) => <Counter {...props} />,
+    render: (props) => <AdminReview {...props} />,
     isPrivate: true,
     roles: ['admin'],
   },

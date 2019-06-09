@@ -5,7 +5,6 @@ import { DRAWER_WIDTH } from '~components/app-drawer/styles';
 export type Classes =
   'toolbar' |
   'toolbarRight' |
-  'headTitle' |
   'languageSelect' |
   'toolbarLeft' |
   'setLanguageLabel' |
@@ -26,18 +25,15 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
   toolbar: {
     color: '#fff',
   },
-  headTitle: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 25,
-    },
-  },
   toolbarLeft: {
     flexGrow: 1,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1rem',
+    },
   },
   toolbarRight: {
-    margin: 5,
-    padding: 5,
     display: 'flex',
+    alignItems: 'center',
     backgroundColor: 'inherit',
   },
   setLanguageLabel: {

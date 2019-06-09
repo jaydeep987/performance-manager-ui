@@ -61,7 +61,7 @@ async function updateUser(data: User): Promise<User> {
   const updatedUser = await sendRequest<User>({
     url: '/users/',
     data,
-    method: 'PUT',
+    method: 'put',
   });
 
   return updatedUser;
