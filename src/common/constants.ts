@@ -31,3 +31,8 @@ export enum ResponseStatus {
   BAD_REQUEST = 400,
   AUTH_FAILED = 401,
 }
+
+/**
+ * Common date format accross app
+ */
+export const dateFormat = 'YYYY/MM/DD HH:mm:ss';

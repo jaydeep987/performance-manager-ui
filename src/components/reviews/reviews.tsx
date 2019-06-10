@@ -5,9 +5,12 @@ import {
   Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/AddCircleOutline';
+import dayjs from 'dayjs';
 import * as React from 'react';
 import { WithTranslation, withTranslation } from 'react-i18next';
+import { dateFormat } from '~common/constants';
 import { ContentBlock, ContentBlockData } from '~components/content-block/content-block';
+import { Feedback, FeedbackData, FeedbackProps } from '~components/feedback/feedback';
 
 import { FormDialog } from './form-dialog';
 import { FormValues } from './review-form';
@@ -37,21 +40,6 @@ const Reviews: React.FunctionComponent<ReviewsProps> = (props: ReviewsProps): JS
   };
 
   const [state, setState] = React.useState(initialState);
-
-  const renderFeedbacks = (feedbacks?: FeedbackData[]) => {
-    if (!feedbacks) {
-      return undefined;
-    }
-    const feedbackBlocks = feedbacks.map((feedback) => (
-      <ContentBlock key={feedback.id} type="sub" {...{ content: feedback.feedback, ...feedback }} />
-    ));
-
-    return (
-      <div className={classes.feedbacksWrap}>
-        {feedbackBlocks}
-      </div>
-    );
-  };
 
   const onEditContent = (contentData: ContentBlockData) => {
     setState({
@@ -88,6 +76,16 @@ const Reviews: React.FunctionComponent<ReviewsProps> = (props: ReviewsProps): JS
     });
   };
 
+  const generateReviewByInfo = (review: Review) => {
+    if (review.reviewBy && review.updatedDate) {
+      const date = dayjs(review.updatedDate);
+
+      return `${review.reviewBy} ${date.format(dateFormat)}`;
+    }
+
+    return '';
+  };
+
   const renderReviews = () => {
     if (!data || (data && !data.length)) {
       return (
@@ -103,10 +101,11 @@ const Reviews: React.FunctionComponent<ReviewsProps> = (props: ReviewsProps): JS
       <div key={review.id} className={classes.reviewBlock}>
         <ContentBlock
           {...{ content: review.review, ...review }}
+          extraContent={generateReviewByInfo(review)}
           onEditContent={onEditContent}
           onDeleteContent={onDeleteContent}
         />
-        {renderFeedbacks(review.feedbacks)}
+        <Feedback feedbacks={review.feedbacks} reviewId={review.id} {...props} />
       </div>
     ));
   };
@@ -190,28 +189,21 @@ export interface ReviewData {
   id: string;
   /** Review from admin or someone */
   review: string;
+  /** Review by */
+  reviewBy?: string;
+  /** Last update date */
+  updatedDate?: string;
   /** Whether review editable or not */
   editable?: boolean;
   /** Whether review editable or not */
   deletable?: boolean;
 }
 
-export interface FeedbackData {
-  /** Unique ID for feedback */
-  id: string;
-  /** Feedback of review or something */
-  feedback: string;
-  /** Whether feedback editable or not */
-  editable?: boolean;
-  /** Whether feedback editable or not */
-  deletable?: boolean;
-}
-
-interface ReviewsProps extends WithTranslation {
+export interface ReviewsProps extends WithTranslation, Omit<FeedbackProps, 'feedbacks' | 'reviewId'> {
   /** Review from admin or someone */
   data: Review[];
   /** Shown reviews are for this user */
-  reviewsOf: string;
+  reviewsOf?: string;
   /** To show add new review button to add new review */
   showAddReviewButton?: boolean;
   /** Customize header. You can add something along with addReview button */

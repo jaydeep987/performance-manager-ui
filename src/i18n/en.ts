@@ -1,13 +1,17 @@
 export const en = {
   translation: {
-    appTitle: 'Performance manager',
+    app: {
+      title: 'Performance manager',
+      welcome: 'Welcome',
+    },
     pageHeadTitle: {
       login: 'Log In',
       home: 'Home',
-      counter: 'Counter',
       employeeManagement: 'Employee Management',
       adminReview: 'Review Management and Assignment',
-      routeError: 'Error loading page',
+      employeeFeedback: 'Reviews and Your Feedbacks',
+      employeeReview: 'Review Assigned Employees',
+      routeError: 'Error Loading Page',
     },
     menus: {
       admin: {
@@ -21,6 +25,8 @@ export const en = {
     },
     login: {
       loginButton: 'Login',
+      username: 'User name',
+      password: 'Password',
     },
     employeeManagement: {
       tableTitle: 'Employees',
@@ -46,6 +52,12 @@ export const en = {
         cancel: 'Cancel',
       },
     },
+    selectAssignedEmployeePopup: {
+      popupTitle: 'Review Employee Assigned to you',
+      button: {
+        cancel: 'Cancel',
+      },
+    },
     reviews: {
       noReviewMessage: 'There are no reviews yet. Try adding new!',
       reviewsOfLabel: 'Showing Reviews of: {{whom}}',
@@ -58,13 +70,22 @@ export const en = {
         submitButton: 'Submit',
         cancelButton: 'Cancel',
       },
+      feedback: {
+        inputFeedbackTextFieldLabel: 'Give Feedback',
+        inputFeedbackTextFieldPlaceholder: 'Input your feedback',
+      },
     },
     assigneePopup: {
       title: 'Assignees',
       noAssignee: 'There are no assingees yet. Try to add some!',
     },
-    dashboard: {
-      text: 'This is dashboard',
+    employeeFeedback: {
+      label: 'Following are reviews you got from other employees. Provide your feedback for all reviews.',
+    },
+    employeeReview: {
+      button: {
+        viewAssignedEmployees: 'View Assigned Employees',
+      },
     },
     routeError: {
       text: 'There was some error while loading page. Please try again',

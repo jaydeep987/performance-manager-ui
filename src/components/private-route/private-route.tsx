@@ -28,7 +28,9 @@ export const PrivateRoute: React.FunctionComponent<PrivateRouteProps> = (props: 
 
     // if route is restricted by role
     if (roles && roles.indexOf(currentUser.role) === -1) {
-      userService.removeUserInfo();
+      userService
+        .logout()
+        .catch();
 
       return <Redirect to={{ pathname: '/login' }} />;
     }

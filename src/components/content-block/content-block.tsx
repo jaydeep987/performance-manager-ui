@@ -16,6 +16,7 @@ const ContentBlock: React.FunctionComponent<ContentBlockProps> = (props: Content
     id,
     type = 'base',
     content,
+    extraContent,
     editable,
     deletable,
     onEditContent,
@@ -54,12 +55,19 @@ const ContentBlock: React.FunctionComponent<ContentBlockProps> = (props: Content
     </div>
   );
 
+  const renderExtraContent = () => extraContent && (
+    <Typography variant="subtitle2" align="right" className={classes.extraInfo}>
+      {extraContent}
+    </Typography>
+  );
+
   return (
     <CardContent className={classNames(classes.content, classes[type])} style={overrideStyles}>
       {toolbar}
       <Typography variant="body2" align="justify" className={classes.contentText}>
         {content}
       </Typography>
+      {renderExtraContent()}
     </CardContent>
   );
 };
@@ -69,6 +77,8 @@ export interface ContentBlockData {
   id: string;
   /** Content to show */
   content: string;
+  /** Extra content to show on bottom right */
+  extraContent?: string;
   /** Whether content editable or not */
   editable?: boolean;
   /** Whether content deletable or not */

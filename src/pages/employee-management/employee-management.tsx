@@ -48,7 +48,7 @@ class EmployeeManagement extends React.Component<EmployeeManagementProps> {
     const { employeeStore } = this.injectedProps;
 
     return (
-      <div>
+      <>
         <PageHeader headerTitle={t('pageHeadTitle.employeeManagement')} />
         <PageContent>
           { employeeStore.error && <ErrorMessage message={employeeStore.error} /> }
@@ -60,7 +60,7 @@ class EmployeeManagement extends React.Component<EmployeeManagementProps> {
             editable={this.getEditableActions()}
           />
         </PageContent>
-      </div>
+      </>
     );
   }
 

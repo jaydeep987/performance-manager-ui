@@ -9,6 +9,10 @@ export interface Review {
   updatedBy: string;
   /** Review written for someone, his ID */
   employeeId: string;
+  /** Last update date */
+  updatedDate?: string;
+  /** Name of person who gave review */
+  reviewBy?: string;
 }
 
 export interface ReviewWithFeedbacks extends Review {

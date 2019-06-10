@@ -163,19 +163,25 @@ class AssigneePopup extends React.Component<AssigneePopupProps, AssigneePopupSta
       );
     }
 
-    return assigneeStore.assignees.map((assignee) => (
-      <ListItem key={assignee._id}>
-        <ListItemText primary={(assignee.assigneeInfo as User[])[0].firstName} />
-        <ListItemSecondaryAction>
-          <IconButton
-            onClick={() => { this.onDeleteAssignee(assignee); }}
-            disabled={assigneeStore.loading}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-    ));
+    return assigneeStore.assignees.map((assignee) => {
+      if (!(assignee.assigneeInfo && assignee.assigneeInfo.length)) {
+        return undefined;
+      }
+
+      return (
+        <ListItem key={assignee._id}>
+          <ListItemText primary={assignee.assigneeInfo[0].firstName} />
+          <ListItemSecondaryAction>
+            <IconButton
+              onClick={() => { this.onDeleteAssignee(assignee); }}
+              disabled={assigneeStore.loading}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
+      );
+    });
   }
 
   /**
@@ -253,7 +259,7 @@ class AssigneePopup extends React.Component<AssigneePopupProps, AssigneePopupSta
 
     onClosePopup()
       .then(() => {
-        assigneeStore.clearStore();
+        assigneeStore.resetStore();
       })
       .catch();
   }

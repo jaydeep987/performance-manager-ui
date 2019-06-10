@@ -16,7 +16,7 @@ export const useStyles = makeStyles({
     marginLeft: '5%',
     whiteSpace: 'normal',
     wordBreak: 'break-word',
-    paddingTop: 5,
+    paddingTop: 8,
     borderRadius: 5,
     marginBottom: 7,
     marginRight: 10,
@@ -26,5 +26,9 @@ export const useStyles = makeStyles({
   toolbar: {
     textAlign: 'right',
     marginTop: -8,
+  },
+  extraInfo: {
+    color: '#595757',
+    fontStyle: 'italic',
   },
 });

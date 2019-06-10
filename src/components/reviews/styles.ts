@@ -1,12 +1,8 @@
 import { Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-const UPPER_HEIGHT = 165;
-
-export const useStyles = makeStyles<Theme>((theme) => ({
+export const useStyles = makeStyles<Theme>(() => ({
   reviewsWrap: {
-    height: `calc(100vh - ${Number(theme.mixins.toolbar.minHeight) + UPPER_HEIGHT}px)`,
-    overflowY: 'auto',
     marginTop: 3,
   },
   noReviewMessage: {
@@ -22,9 +18,6 @@ export const useStyles = makeStyles<Theme>((theme) => ({
     borderRadius: 5,
     color: '#1a237e',
     boxShadow: '1px 1px 1px 1px, -1px 1px 1px 1px',
-  },
-  feedbacksWrap: {
-    padding: 0,
   },
   header: {
     padding: '5px 3px',

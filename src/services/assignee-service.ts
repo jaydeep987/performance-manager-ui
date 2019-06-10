@@ -1,4 +1,4 @@
-import { Assignee } from '~model/assignee';
+import { AssignedEmployee, Assignee } from '~model/assignee';
 import { sendRequest } from '~utils/request';
 
 /**
@@ -6,6 +6,7 @@ import { sendRequest } from '~utils/request';
  */
 export const assigneeService = {
   loadAssignees,
+  loadAssignedEmployees,
   createAssignee,
   deleteAssignee,
 };
@@ -17,6 +18,19 @@ async function loadAssignees(assignedEmployeeId: string): Promise<Assignee[]> {
   const feedbacks = await sendRequest<Assignee[]>({
     url: '/assignees/',
     data: { assignedEmployeeId },
+    method: 'post',
+  });
+
+  return feedbacks;
+}
+
+/**
+ * Loads assigned employees to given assignee.
+ */
+async function loadAssignedEmployees(assigneeId: string): Promise<AssignedEmployee[]> {
+  const feedbacks = await sendRequest<AssignedEmployee[]>({
+    url: '/assignees/assigned',
+    data: { assigneeId },
     method: 'post',
   });
 

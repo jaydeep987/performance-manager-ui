@@ -53,6 +53,8 @@ class Login extends React.Component<LoginProps> {
   onSubmit = (values: FormValues, action: FormikActions<FormValues>) => {
     const { t, history } = this.props;
 
+    action.setError('');
+
     // Call api to authenticate
     userService
       .authenticate({

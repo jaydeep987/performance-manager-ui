@@ -23,8 +23,8 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProp
         className={classes.textbox}
         id="username"
         name="username"
-        label="User Name"
-        placeholder="Username"
+        label={t('login.username')}
+        placeholder={t('login.username')}
         required={true}
         onChange={handleChange('username')}
       />
@@ -33,8 +33,8 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProp
         className={classes.textbox}
         type="password"
         name="password"
-        label="Password"
-        placeholder="Your Password"
+        label={t('login.password')}
+        placeholder={t('login.password')}
         required={true}
         onChange={handleChange('password')}
       />

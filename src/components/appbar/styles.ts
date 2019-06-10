@@ -11,7 +11,8 @@ export type Classes =
   'appBarShift' |
   'menuButton' |
   'hide' |
-  'appBar';
+  'appBar' |
+  'userWelcome';
 
 export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classes, CSSProperties> => ({
   appBar: {
@@ -59,5 +60,11 @@ export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classe
   },
   hide: {
     display: 'none',
+  },
+  userWelcome: {
+    textAlign: 'center',
+    color: '#fff',
+    padding: '0 18px',
+    fontStyle: 'bold',
   },
 });

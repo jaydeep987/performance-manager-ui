@@ -21,13 +21,17 @@ async function loadModule(loadingFactory: () => Promise<any>, moduleName: string
   }
 }
 
-const Dashboard = React.lazy(() => loadModule(() => import('~pages/dashboard/dashboard'), 'Dashboard'));
-const Counter = React.lazy(() => loadModule(() => import('~pages/counter/counter'), 'Counter'));
 const EmployeeManagement = React.lazy(
   () => loadModule(() => import('~pages/employee-management/employee-management'), 'EmployeeManagement'),
 );
 const AdminReview = React.lazy(
   () => loadModule(() => import('~pages/admin-review/admin-review'), 'AdminReview'),
+);
+const EmployeeReview = React.lazy(
+  () => loadModule(() => import('~pages/employee-review/employee-review'), 'EmployeeReview'),
+);
+const EmployeeFeedback = React.lazy(
+  () => loadModule(() => import('~pages/employee-feedback/employee-feedback'), 'EmployeeFeedback'),
 );
 
 const routes: RoutePropsExtended[] = [
@@ -45,13 +49,13 @@ const routes: RoutePropsExtended[] = [
   },
   {
     path: '/feedback',
-    render: (props) => <Dashboard {...props} />,
+    render: (props) => <EmployeeFeedback {...props} />,
     isPrivate: true,
-    roles: ['normal'],
+    roles: ['normal', 'admin'],
   },
   {
     path: '/assigned-to-you',
-    render: (props) => <Counter {...props} />,
+    render: (props) => <EmployeeReview {...props} />,
     isPrivate: true,
     roles: ['normal'],
   },

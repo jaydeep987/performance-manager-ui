@@ -20,6 +20,7 @@ import * as React from 'react';
 import { RouterProps } from 'react-router';
 import { IconSize, LanguageKeys, Languages } from '~common/constants';
 import { userService } from '~services/user-service';
+import { resetStores } from '~stores/index';
 import { SettingStore } from '~stores/settings';
 import { StyledComponentProps } from '~types/styled';
 
@@ -32,6 +33,7 @@ import { Classes, styles } from './styles';
 const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.Element => {
   const { classes, i18n, t: translate } = props;
   const { settingStore, history } = props as InjectedProps;
+  const currentUser = userService.getUserInfo();
 
   reaction(
     () => settingStore.locale,
@@ -61,6 +63,8 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
     userService
       .logout()
       .finally(() => {
+        // reset all stores
+        resetStores();
         history.replace('/login');
       })
       .catch();
@@ -87,10 +91,16 @@ const Appbar: React.FunctionComponent<AppbarProps> = ((props: AppbarProps): JSX.
         >
           <MenuIcon />
         </IconButton>
-        <Typography className={classes.toolbarLeft} variant="h4" color="inherit">
-          {translate('appTitle')}
+        <Typography className={classes.toolbarLeft} variant="h5" color="inherit">
+          {translate('app.title')}
         </Typography>
         <Paper className={classes.toolbarRight}>
+          <Typography variant="subtitle1" className={classes.userWelcome}>
+            {translate('app.welcome')}
+            <Typography variant="body1">
+              {currentUser && currentUser.firstName}
+            </Typography>
+          </Typography>
           <Button variant="contained" size="small" color="primary" onClick={handleLogoutClick}>
             <Icon path={mdiLogout} size={IconSize.SM1} color="#fff" />
           </Button>

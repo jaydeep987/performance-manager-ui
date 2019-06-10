@@ -26,7 +26,7 @@ async function loadFeedbacks(reviewId: string): Promise<Feedback[]> {
 /**
  * Creates new feedback for particular review.
  */
-async function createFeedback(feedback: Feedback): Promise<Feedback> {
+async function createFeedback(feedback: Omit<Feedback, '_id'>): Promise<Feedback> {
   const addedFeedback = await sendRequest<Feedback>({
     url: '/feedbacks/create',
     data: feedback,

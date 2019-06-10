@@ -15,11 +15,12 @@ const MAIN_CONTENT_PADDING = 3;
 export const styles: StyleRulesCallback<Classes> = (theme: Theme): Record<Classes, CSSProperties> => ({
   container: {
     display: 'flex',
+    height: '100%',
   },
   mainContent: {
     flexGrow: 1,
     paddingTop: theme.spacing(MAIN_CONTENT_PADDING),
-    maxHeight: '100%',
+    height: '100%',
     overflow: 'hidden',
   },
   mainWrapper: {

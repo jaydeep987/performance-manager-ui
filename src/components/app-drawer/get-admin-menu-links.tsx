@@ -3,6 +3,7 @@ import RateReviewIcon from '@material-ui/icons/RateReview';
 import * as React from 'react';
 
 import { AppDrawerProps, Links } from './app-drawer';
+import { getCommonMenuLinks } from './get-common-menu-links.1';
 
 /**
  * Gives menu links for admin users
@@ -21,5 +22,6 @@ export function getAdminMenuLinks(props: AppDrawerProps): Links[] {
       icon: <RateReviewIcon className={classes.drawerLinkIcon} />,
       text: translate('menus.admin.review'),
     },
+    ...getCommonMenuLinks(props),
   ];
 }

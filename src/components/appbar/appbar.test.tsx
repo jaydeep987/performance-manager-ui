@@ -48,7 +48,7 @@ describe('Test Component: AppBar', () => {
   it('should have header title (in english)', () => {
     const wrapper = mount(AppBarElement);
 
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.appTitle);
+    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.app.title);
   });
 
   it('should have language select box and change language of title when change it', () => {
@@ -56,10 +56,10 @@ describe('Test Component: AppBar', () => {
 
     // change to japanese
     wrapper.find(`Select.${classes.languageSelect}`).props().onChange!(getMockChangeEventObj('jp') as React.FormEvent);
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(jp.translation.appTitle);
+    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(jp.translation.app.title);
 
     // change back to english
     wrapper.find(`Select.${classes.languageSelect}`).props().onChange!(getMockChangeEventObj('en') as React.FormEvent);
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.appTitle);
+    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.app.title);
     });
 });

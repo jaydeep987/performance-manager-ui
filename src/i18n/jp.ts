@@ -1,12 +1,16 @@
 export const jp = {
   translation: {
-    appTitle: 'パフォーマンスマネージャ',
+    app: {
+      title: 'パフォーマンスマネージャ',
+      welcome: 'ようこそ',
+    },
     pageHeadTitle: {
       home: 'ホーム',
-      counter: 'カウンター',
       employeeManagement: '社員管理',
       adminReview: 'レビュー管理または割当て',
       routeError: 'エラーが発生しました',
+      employeeFeedback: 'あなたのレビューまたはフィードバック',
+      employeeReview: '割り当てられた社員にレビュー書きましょう',
     },
     menus: {
       admin: {
@@ -20,6 +24,8 @@ export const jp = {
     },
     login: {
       loginButton: 'ログイン',
+      username: 'ユーザー名',
+      password: 'パスワード',
     },
     employeeManagement: {
       tableTitle: '社員データ',
@@ -45,6 +51,12 @@ export const jp = {
         cancel: 'キャンセル',
       },
     },
+    selectAssignedEmployeePopup: {
+      popupTitle: 'あなたに割り当てられた社員',
+      button: {
+        cancel: 'キャンセル',
+      },
+    },
     reviews: {
       noReviewMessage: 'まだレビューはありません。 いくつか書いてみて！',
       reviewsOfLabel: '{{whom}}のレビュー：',
@@ -57,13 +69,22 @@ export const jp = {
         submitButton: '書く',
         cancelButton: 'キャンセル',
       },
+      feedback: {
+        inputFeedbackTextFieldLabel: 'フィードバック',
+        inputFeedbackTextFieldPlaceholder: 'フィードバック入力',
+      },
     },
     assigneePopup: {
       title: '譲受人',
       noAssignee: 'まだ誰も譲受人はありません。',
     },
-    dashboard: {
-      text: 'これはダッシュボードです！',
+    employeeFeedback: {
+      label: '以下は、あなたが他の社員からもらったレビューです。 すべてのレビューについてご意見をお寄せください。',
+    },
+    employeeReview: {
+      button: {
+        viewAssignedEmployees: '割り当てられた社員',
+      },
     },
     routeError: {
       text: 'ページがロードする時にエラーが発生しました。再試行してください。',

@@ -26,10 +26,18 @@ class SelectEmployeePopup extends React.Component<SelectEmployeePopupProps> {
     return this.props as InjectedProps;
   }
 
-  /** Fetch employee data */
-  componentDidMount(): void {
+  /**
+   * Before popup gets open, fetch data from api.
+   * Fetch latest from api everytime popup opens
+   */
+  componentWillReceiveProps(newProps: SelectEmployeePopupProps): void {
     const { employeeStore } = this.injectedProps;
-    employeeStore.loadUsers();
+    const { openPopup } = this.props;
+    const { openPopup: newOpenPopup } = newProps;
+
+    if (openPopup !== newOpenPopup && newOpenPopup) {
+      employeeStore.loadUsers();
+    }
   }
 
   /**

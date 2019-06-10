@@ -9,14 +9,24 @@ import { getApiErrorMessage } from '~utils/error-handle';
  * Employee store
  */
 export class EmployeeStore {
+  /**
+   * Store's initial state.
+   * Use to reset after logout
+   */
+  private static readonly initialState = {
+    employees: [],
+    error: '',
+    translate: undefined,
+  };
+
   /** Observalbe prop to hold employee data */
-  @observable employees: User[] = [];
+  @observable employees: User[] = EmployeeStore.initialState.employees;
 
   /** Hold error message */
-  @observable error = '';
+  @observable error = EmployeeStore.initialState.error;
 
   /** Translation function */
-  private translate?: i18next.TFunction = undefined;
+  private translate?: i18next.TFunction = EmployeeStore.initialState.translate;
 
   /** Sets translation function */
   setTranslate(translate: i18next.TFunction): void {
@@ -111,6 +121,15 @@ export class EmployeeStore {
         this.error = getApiErrorMessage({ error, translate: this.translate as i18next.TFunction });
         throw error;
       });
+  }
+
+  /**
+   * Resets store to initial state
+   */
+  @action resetStore(): void {
+    this.employees = EmployeeStore.initialState.employees;
+    this.error = EmployeeStore.initialState.error;
+    this.translate = EmployeeStore.initialState.translate;
   }
 }
 

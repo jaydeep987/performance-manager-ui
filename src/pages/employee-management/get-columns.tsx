@@ -13,6 +13,7 @@ const getPasswordColumnRenderField = (data: User): JSX.Element => (
   />
 );
 
+// TODO: Prevent uncontrolled component warning which comes only first time
 const getPasswordEditableColumn = ({ columnDef, value, onChange }: EditComponentProps) => (
   <TextField
     type="password"
