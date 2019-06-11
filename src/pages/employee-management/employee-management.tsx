@@ -32,7 +32,10 @@ class EmployeeManagement extends React.Component<EmployeeManagementProps> {
    * Load employee data  from api
    */
   componentDidMount(): void {
-    this.injectedProps.employeeStore.loadUsers();
+    const { employeeStore } = this.injectedProps;
+    employeeStore
+      .loadUsers()
+      .catch();
   }
 
   /** Gives injected props */

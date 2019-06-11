@@ -32,6 +32,7 @@ const LoginForm: React.FunctionComponent<LoginFormProps> = (props: LoginFormProp
       <TextField
         className={classes.textbox}
         type="password"
+        id="password"
         name="password"
         label={t('login.password')}
         placeholder={t('login.password')}

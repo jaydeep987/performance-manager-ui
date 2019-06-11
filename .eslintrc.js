@@ -37,6 +37,7 @@ module.exports = {
     'react/no-multi-comp': 'off',
     'no-unused-vars': 'off',
     'import/prefer-default-export': false,
+    'import/no-extraneous-dependencies': false,
     'no-param-reassign': 'off',
     'no-use-before-define': ['error', {
       functions: false,

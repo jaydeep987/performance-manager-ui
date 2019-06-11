@@ -1,7 +1,11 @@
+import { ThemeProvider } from '@material-ui/styles';
 import { mount } from 'enzyme';
 import { Provider } from 'mobx-react';
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
+import sinon from 'sinon';
+import { User } from '~model/user';
+import { userService } from '~services/user-service';
 import { SettingStore } from '~stores/settings';
 
 import { getClassNamesFromStyles, getMockChangeEventObj } from '../../common/test-utils';
@@ -17,6 +21,15 @@ describe('Test Component: AppBar', () => {
   let AppBarElement: JSX.Element;
   let settingStore: SettingStore;
   let classes: { [key: string]: string };
+  const userInfo: User = {
+    _id: '2323fsdf232',
+    firstName: 'User1',
+    lastName: 'Lastname',
+    userName: 'username',
+    password: '123',
+    sex: 'M',
+    role: 'admin',
+  };
 
   beforeAll(() => {
     settingStore = new SettingStore();
@@ -25,7 +38,9 @@ describe('Test Component: AppBar', () => {
     const Component = withTranslation()(Appbar);
     AppBarElement = (
       <Provider {...{settingStore}}>
-        <Component classes={classes} />
+        <ThemeProvider theme={muiTheme}>
+          <Component classes={classes} />
+        </ThemeProvider>
       </Provider>
     );
   });
@@ -48,18 +63,43 @@ describe('Test Component: AppBar', () => {
   it('should have header title (in english)', () => {
     const wrapper = mount(AppBarElement);
 
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.app.title);
+    expect(wrapper.find(`.${classes.toolbarLeft}`).last().text()).toBe(en.translation.app.title);
+  });
+
+  it ('should have welcome message with user name on right side', () => {
+    const sandbox = sinon.createSandbox();
+    sandbox.stub(userService, 'getUserInfo').returns(userInfo);
+
+    const wrapper = mount(AppBarElement);
+
+    // Find welcome message
+    expect(
+      wrapper
+      .find(`.${classes.userWelcome}`)
+      .last()
+      .text(),
+    ).toEqual(`Welcome${userInfo.firstName}`);
+
+    sinon.restore();
   });
 
   it('should have language select box and change language of title when change it', () => {
     const wrapper = mount(AppBarElement);
 
     // change to japanese
-    wrapper.find(`Select.${classes.languageSelect}`).props().onChange!(getMockChangeEventObj('jp') as React.FormEvent);
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(jp.translation.app.title);
+    wrapper
+      .find(`.${classes.languageSelect}`)
+      .first()
+      .props()
+      .onChange!(getMockChangeEventObj('jp') as React.FormEvent);
+    expect(wrapper.find(`.${classes.toolbarLeft}`).last().text()).toBe(jp.translation.app.title);
 
     // change back to english
-    wrapper.find(`Select.${classes.languageSelect}`).props().onChange!(getMockChangeEventObj('en') as React.FormEvent);
-    expect(wrapper.find(`span.${classes.headTitle}`).text()).toBe(en.translation.app.title);
-    });
+    wrapper
+      .find(`.${classes.languageSelect}`)
+      .first()
+      .props()
+      .onChange!(getMockChangeEventObj('en') as React.FormEvent);
+    expect(wrapper.find(`.${classes.toolbarLeft}`).last().text()).toBe(en.translation.app.title);
+  });
 });

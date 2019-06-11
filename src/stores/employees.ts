@@ -34,10 +34,10 @@ export class EmployeeStore {
   }
 
   /** Action which will fetch all users using service and set in store */
-  @action loadUsers(): void {
+  @action loadUsers(): Promise<void> {
     this.error = '';
 
-    userService
+    return userService
       .loadUsers()
       .then((users: User[]) => {
         this.employees = users;

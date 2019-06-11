@@ -12,8 +12,6 @@ export interface User {
   sex: string;
   /** Role of user */
   role: string;
-  /** Token */
-  token: string;
   /** Password, this cannot be in api response, but can be used when sending data to api */
   password?: string;
 }

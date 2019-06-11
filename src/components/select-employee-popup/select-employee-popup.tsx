@@ -36,7 +36,9 @@ class SelectEmployeePopup extends React.Component<SelectEmployeePopupProps> {
     const { openPopup: newOpenPopup } = newProps;
 
     if (openPopup !== newOpenPopup && newOpenPopup) {
-      employeeStore.loadUsers();
+      employeeStore
+        .loadUsers()
+        .catch();
     }
   }
 

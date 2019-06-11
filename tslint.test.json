@@ -10,7 +10,7 @@
     "member-access": [true, "no-public"],
     "typedef": [true, "call-signature", "parameter"],
     "no-default-export": true,
-    "no-implicit-dependencies": [true, "dev", ["~common", "~components", "~stores", "~pages", "~types", "~img"]],
+    "no-implicit-dependencies": [true, "dev", ["~common", "~components", "~stores", "~pages", "~types", "~img", "~utils", "~model", "~services"]],
     "no-submodule-imports": false,
     "no-inferred-empty-object-type": false,
     "no-trailing-whitespace": [true, "ignore-jsdoc"],
@@ -29,6 +29,7 @@
         "named-imports-order": "lowercase-last"
       }
     ],
+    "completed-docs": false,
     "no-console": false,
     "newline-per-chained-call": false,
     "promise-function-async": false,

@@ -1,9 +1,14 @@
 import { Drawer, IconButton, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 import { ReactWrapper, mount } from 'enzyme';
 import { Provider } from 'mobx-react';
 import * as React from 'react';
 import { withTranslation } from 'react-i18next';
 import { HashRouter } from 'react-router-dom';
+import sinon from 'sinon';
+import { User } from '~model/user';
+import { muiTheme } from '~pages/app/mui-theme';
+import { userService } from '~services/user-service';
 import { SettingStore } from '~stores/settings';
 
 import { initI18Next } from '../../i18n/i18n';
@@ -13,18 +18,45 @@ import { AppDrawer } from './app-drawer';
 describe('Test Component: AppDrawer', () => {
   let AppDrawerElement: JSX.Element;
   let settingStore: SettingStore;
+  let sandbox: sinon.SinonSandbox;
+  const userInfo: User = {
+    _id: '2323fsdf232',
+    firstName: 'User1',
+    lastName: 'Lastname',
+    userName: 'username',
+    password: '123',
+    sex: 'M',
+    role: 'admin',
+  };
+
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+  });
 
   beforeAll(() => {
     initI18Next();
     settingStore = new SettingStore();
+    sandbox = sinon.createSandbox();
+    // mock user service to provide currentUser
+    sandbox.stub(userService, 'getUserInfo').returns(userInfo);
     const Component = withTranslation()(AppDrawer);
     AppDrawerElement = (
       <Provider {...{settingStore}}>
-        <HashRouter>
-          <Component />
-        </HashRouter>
+        <ThemeProvider theme={muiTheme}>
+          <HashRouter>
+            <Component />
+          </HashRouter>
+        </ThemeProvider>
       </Provider>
     );
+  });
+
+  afterAll(() => {
+    sandbox.restore();
   });
 
   it('should render appbar with permanent drawer', () => {

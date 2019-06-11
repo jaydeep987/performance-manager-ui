@@ -75,6 +75,8 @@ const Feedback: React.FunctionComponent<FeedbackProps> = (props: FeedbackProps):
           reviewId,
           ...data,
         });
+        setNewFeedback('');
+        setEditFeedbackId('');
       } catch (error) {
         // ignore
       }

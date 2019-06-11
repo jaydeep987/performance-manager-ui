@@ -15,26 +15,26 @@ export const assigneeService = {
  * Loads assignees of some employee.
  */
 async function loadAssignees(assignedEmployeeId: string): Promise<Assignee[]> {
-  const feedbacks = await sendRequest<Assignee[]>({
+  const assignees = await sendRequest<Assignee[]>({
     url: '/assignees/',
     data: { assignedEmployeeId },
     method: 'post',
   });
 
-  return feedbacks;
+  return assignees;
 }
 
 /**
  * Loads assigned employees to given assignee.
  */
 async function loadAssignedEmployees(assigneeId: string): Promise<AssignedEmployee[]> {
-  const feedbacks = await sendRequest<AssignedEmployee[]>({
+  const assignees = await sendRequest<AssignedEmployee[]>({
     url: '/assignees/assigned',
     data: { assigneeId },
     method: 'post',
   });
 
-  return feedbacks;
+  return assignees;
 }
 
 /**
@@ -42,24 +42,24 @@ async function loadAssignedEmployees(assigneeId: string): Promise<AssignedEmploy
  * So that assignee can participate in some employees' review process.
  */
 async function createAssignee(assignee: Omit<Assignee, 'userInfo' | '_id'>): Promise<Assignee> {
-  const addedFeedback = await sendRequest<Assignee>({
+  const addedAssignee = await sendRequest<Assignee>({
     url: '/assignees/create',
     data: assignee,
     method: 'post',
   });
 
-  return addedFeedback;
+  return addedAssignee;
 }
 
 /**
  * Deletes assignee of some employee.
  */
 async function deleteAssignee(assignee: Omit<Assignee, 'userInfo'>): Promise<Assignee> {
-  const deletedFeedback = await sendRequest<Assignee>({
+  const deletedAssignee = await sendRequest<Assignee>({
     url: '/assignees/',
     method: 'delete',
     data: assignee,
   });
 
-  return deletedFeedback;
+  return deletedAssignee;
 }

@@ -18,6 +18,7 @@ async function loadFeedbacks(reviewId: string): Promise<Feedback[]> {
   const feedbacks = await sendRequest<Feedback[]>({
     url: '/feedbacks/',
     data: { reviewId },
+    method: 'post',
   });
 
   return feedbacks;

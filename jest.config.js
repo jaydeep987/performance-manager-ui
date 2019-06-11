@@ -20,6 +20,10 @@ module.exports = {
     '~pages/(.*)': "<rootDir>/src/pages/$1",
     '~types/(.*)': "<rootDir>/src/types/$1",
     '~img/(.*)': "<rootDir>/src/img/$1",
+    '~utils/(.*)': "<rootDir>/src/utils/$1",
+    '~model/(.*)': "<rootDir>/src/model/$1",
+    '~services/(.*)': "<rootDir>/src/services/$1",
+    "css-vendor*": "<rootDir>/node_modules/jss-plugin-vendor-prefixer/node_modules/css-vendor"
   },
   "transform": {
     "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
@@ -27,5 +31,5 @@ module.exports = {
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   "snapshotSerializers": ["enzyme-to-json/serializer"],
-  "setupFilesAfterEnv": ["<rootDir>/config/setupEnzyme.js"],
+  "setupFilesAfterEnv": ["<rootDir>/config/setupEnzyme.js", "<rootDir>/config/test-imports.js"],
 }

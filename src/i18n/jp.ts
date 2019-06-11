@@ -58,7 +58,7 @@ export const jp = {
       },
     },
     reviews: {
-      noReviewMessage: 'まだレビューはありません。 いくつか書いてみて！',
+      noReviewMessage: 'まだレビューはありません。',
       reviewsOfLabel: '{{whom}}のレビュー：',
       formDialogTitle: 'レビュー',
       buttons: {

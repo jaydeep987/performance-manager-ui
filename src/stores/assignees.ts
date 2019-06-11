@@ -17,6 +17,7 @@ export class AssigneeStore {
     assignedEmployees: [],
     error: '',
     loading: false,
+    translate: undefined,
   };
 
   /** Observalbe prop to hold assignee data */
@@ -32,7 +33,7 @@ export class AssigneeStore {
   @observable loading = AssigneeStore.initialState.loading;
 
   /** Translation function */
-  private translate?: i18next.TFunction = undefined;
+  private translate?: i18next.TFunction = AssigneeStore.initialState.translate;
 
   /** Sets translation function */
   setTranslate(translate: i18next.TFunction): void {
@@ -123,6 +124,7 @@ export class AssigneeStore {
     this.error = AssigneeStore.initialState.error;
     this.loading = AssigneeStore.initialState.loading;
     this.assignedEmployees = AssigneeStore.initialState.assignedEmployees;
+    this.translate = AssigneeStore.initialState.translate;
   }
 }
 

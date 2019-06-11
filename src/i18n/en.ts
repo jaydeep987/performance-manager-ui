@@ -59,7 +59,7 @@ export const en = {
       },
     },
     reviews: {
-      noReviewMessage: 'There are no reviews yet. Try adding new!',
+      noReviewMessage: 'There are no reviews yet.',
       reviewsOfLabel: 'Showing Reviews of: {{whom}}',
       formDialogTitle: 'Review',
       buttons: {

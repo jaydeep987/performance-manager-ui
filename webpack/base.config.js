@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 /** Settings for various paths */
@@ -143,6 +144,12 @@ module.exports = (env) => {
       new MiniCssExtractPlugin({
         filename: isProd ? '[name].[hash].css' : '[name].css',
         chunkFilename: isProd ? '[id].[hash].css' : '[id].css',
+      }),
+      /** Inject needed env vars */
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: 'development',
+        API_BASE_URL: '',
+        API_TIMEOUT: 3000,
       }),
     ]
   }
