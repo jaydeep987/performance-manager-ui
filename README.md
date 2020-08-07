@@ -1,12 +1,12 @@
 [![Node version](https://img.shields.io/node/v/react.svg?style=flat)](http://nodejs.org/download/)
 
-# performance-manager-ui: The coding challenge
+# performance-manager-ui
 
 >The UI project for performane manager app, another component apart from service.
 
 UI is built with latest front end technlogies.
 
-- [About challenge](https://github.com/Pay-Baymax/FullStackEngineerChallenge)
+- [About](#about)
 - [Service/API & docs](https://github.com/jaydeep987/performance-manager-service)
 - [Features & Technology stack](#features)
 - [Getting started](#getting-started)
@@ -20,6 +20,19 @@ UI is built with latest front end technlogies.
 - [Assumptions](./docs/assumptions.md)
 - [Limitations and scope of improvements](#limitations)
 - [My way of thinking](https://github.com/jaydeep987/performance-manager-service/blob/master/docs/myway.md)
+
+## About
+This is showcase of my react knowledge. A sample and simple application which has admin and client panel views.
+It is a web application that allows employees to submit feedback toward each other's performance review.
+
+### admin view:
+- Add/remove/update/view employees
+- Add/update/view performance reviews
+- Assign employees to participate in another employee's performance review
+
+### employee view
+- List of performance reviews requiring feedback
+- Submit feedback
 
 ## Features
   - Using `Babel7` and `typescript` to use latest `ecma` features
